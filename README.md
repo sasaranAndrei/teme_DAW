@@ -1,3 +1,15 @@
+TODO 🔥 
+- creare tipuri de useri
+- creare model real_estate cu enum la type
+- adaugat pe modeul de user lista de concerned_real_estates
+- checkbox sa selecteze el care vrea in profil
+- salvarea unui pdf la nivel de server
+- serviciu web pentru CALENDAR!!!
+- model de timetable
+- model de reservation
+- 
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
