@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RealEstatesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +27,5 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::resource('real_estates', RealEstatesController::class);
