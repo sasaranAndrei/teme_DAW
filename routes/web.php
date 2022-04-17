@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RealEstatesController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,4 +29,8 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::resource('real_estates', RealEstatesController::class);
+Route::group(['middleware' => 'auth'], function() {
+    Route::resource('real_estates', RealEstatesController::class);
+    Route::resource('users', UsersController::class);  
+});
+
