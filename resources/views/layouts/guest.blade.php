@@ -15,10 +15,16 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+
+        <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
+
+        <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+    
+        @yield('scripts')
     </body>
 </html>

@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\TemporaryFile;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -34,5 +35,17 @@ class CreateNewUser implements CreatesNewUsers
         ]);
 
         $user->roles()->attach(2);
+        
+        
+        // $temporaryFile = TemporaryFile::where('folder', $input['gdpr'])->first();
+        
+        // if ($temporaryFile) {
+        //     $user->addMedia(storage_path('app/public/gdpr/' . $input['gdpr'] . '/' . $temporaryFile->filename))
+        //         ->toMediaCollection('gdpr');
+
+        //     rmdir(storage_path('app/public/gdpr/tmp' . $input['gdpr']));
+        //     $temporaryFile->delete();
+        // }
+
     }
 }

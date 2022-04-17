@@ -29,6 +29,11 @@
                 <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 
+            <div class="mt-4">
+                <x-jet-label for="gdpr" value="{{ __('GDPR Consent') }}" />
+                <x-jet-input id="gdpr" class="block mt-1 w-full" type="file" name="gdpr" required />
+            </div>
+
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
                     <x-jet-label for="terms">
@@ -57,4 +62,23 @@
             </div>
         </form>
     </x-jet-authentication-card>
+
+    @section('scripts')
+        <script>
+            // Get a reference to the file input element
+            const inputElement = document.querySelector('input[id="gdpr"]');
+
+            // Create a FilePond instance
+            const pond = FilePond.create(inputElement);
+
+            FilePond.setOptions({
+                server: {
+                    url: '/upload',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    }
+                }
+            });
+        </script>
+    @endsection
 </x-guest-layout>

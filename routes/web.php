@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RealEstatesController;
+use App\Http\Controllers\UploadsController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,3 +35,4 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('users', UsersController::class);  
 });
 
+Route::post('upload', [UploadsController::class, 'store']);
