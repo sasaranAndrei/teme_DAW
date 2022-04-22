@@ -31,14 +31,6 @@
                         </div>
 
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <label for="password" class="block font-medium text-sm text-gray-700">Password</label>
-                            <input type="password" name="password" id="password" class="form-input rounded-md shadow-sm mt-1 block w-full" />
-                            @error('password')
-                                <p class="text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="roles" class="block font-medium text-sm text-gray-700">Roles</label>
                             <select name="roles[]" id="roles" class="form-multiselect block rounded-md shadow-sm mt-1 block w-full" multiple="multiple">
                                 @foreach($roles as $id => $role)
@@ -50,6 +42,13 @@
                             @error('roles')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
+                        </div>
+
+                        <div class="px-4 py-5 bg-white sm:p-6">
+                            @foreach($property_types as $property_type)
+                                <input type="checkbox" id="{{$property_type}}" name="interested[]" value="{{$property_type}}" @if(in_array($property_type, $user->interested)) checked @endif />
+                                <label for="interested[]"> {{$property_type}} </label><br>
+                            @endforeach
                         </div>
 
                         <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">

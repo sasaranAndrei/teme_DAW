@@ -11,4 +11,6 @@ class RealEstate extends Model
     use HasFactory;
 
     protected $fillable = ['property_type', 'address', 'area', 'floor'];
+
+    public static $PROPERTY_TYPES = ['apartment', 'single_room', 'home', 'commercial_space'];
 }

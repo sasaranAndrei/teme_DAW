@@ -49,16 +49,19 @@ class UsersController extends Controller
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, "You don't have admin  permission");
 
         $roles = Role::pluck('title', 'id');
-        
+        $property_types = RealEstate::$PROPERTY_TYPES;
+
         $user->load('roles');
 
-        return view('users.edit', compact('user', 'roles'));
+        return view('users.edit', compact('user', 'roles'))->with('property_types', $property_types);
     }
 
     public function update(Request $request, User $user)
     {  
         $user->update($request->all());
         $user->roles()->sync($request->input('roles', []));
+        $user->interested = $request->get('interested');
+        $user->save();
 
         return redirect()->route('users.index');
     }
