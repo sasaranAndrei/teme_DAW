@@ -8,6 +8,18 @@
             {{ __('Real Estates') }}
         </h2>
     </x-slot>
+    
+    @foreach ($property_types as $property_type)
+      <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
+            <a href="{{ route('real_estates.index', ['property_type' => $property_type])}}" class="bg-green-500 hover:bg-green-700">{{ $property_type }}</a>
+          </div>
+    @endforeach
+    <div>
+        <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
+          <a href="{{ route('real_estates.index')}}" class="bg-green-500 hover:bg-green-700"> 
+        </div>
+    </div>
+    
     <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <!-- ====== Table Section Start -->

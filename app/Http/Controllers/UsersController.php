@@ -20,6 +20,8 @@ class UsersController extends Controller
         return view('users.index', compact('users'));
     }
 
+    
+
     public function create()
     {
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, "You don't have admin  permission");

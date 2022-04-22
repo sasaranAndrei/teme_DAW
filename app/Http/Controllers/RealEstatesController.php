@@ -12,11 +12,21 @@ class RealEstatesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $real_estates = RealEstate::all();
+        $property_type = $request->query->get('property_type');
+        // dd($property_type);
         
-        return view('real_estates.index', compact('real_estates'));
+        if (is_null($property_type)){
+            $real_estates = RealEstate::all();
+        }
+        else {
+            $real_estates = RealEstate::where('property_type', $property_type)->get();
+        }
+        
+        $property_types = RealEstate::$PROPERTY_TYPES;
+
+        return view('real_estates.index', compact('real_estates'))->with('property_types', $property_types);
     }
 
     /**
