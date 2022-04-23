@@ -26,4 +26,25 @@
         <br/>
         <br/>
     </div>
+
+    @if (auth()->user()->isAdmin())
+        <div>
+            Bookings
+            <br>
+            <br>
+            <br>
+            @foreach ($real_estate->bookings as $booking)
+                <div>
+                    User: {{ $booking->user->name}}
+                    <br>
+                    Start date: {{ $booking->event_start }}
+                    <br>
+                    End date: {{ $booking->event_start }}
+                    <br>
+                    
+                </div>
+            @endforeach
+
+        </div>
+    @endif
 </x-app-layout>

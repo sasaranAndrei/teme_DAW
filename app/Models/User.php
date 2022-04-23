@@ -64,4 +64,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class);
     }
+
+    public function isAdmin()
+    {
+        return in_array('Admin', $this->roles()->get()->pluck('title')->all());
+    }
 }

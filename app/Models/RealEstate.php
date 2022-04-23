@@ -13,4 +13,9 @@ class RealEstate extends Model
     protected $fillable = ['property_type', 'address', 'area', 'floor'];
 
     public static $PROPERTY_TYPES = ['apartment', 'single_room', 'home', 'commercial_space'];
+
+    public function bookings()
+    {
+        return $this->hasMany(CalendarEvent::class);
+    }
 }

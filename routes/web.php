@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\RealEstatesController;
 use App\Http\Controllers\UploadsController;
 use App\Http\Controllers\UsersController;
@@ -32,7 +33,12 @@ Route::middleware([
 
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('real_estates', RealEstatesController::class);
-    Route::resource('users', UsersController::class);  
+    Route::resource('users', UsersController::class);
+    Route::resource('calendar_events', EventController::class);
 });
 
 Route::post('upload', [UploadsController::class, 'store']);
+
+Route::get('/show-event-calendar', [EventController::class, 'index']);
+Route::post('/manage-events', [EventController::class, 'manageEvents']);
+// Route::get('/create', [EventController::class, 'create']);

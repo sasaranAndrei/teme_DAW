@@ -110,4 +110,10 @@ class RealEstatesController extends Controller
         return redirect()->route('real_estates.index')
                         ->with('success','Real Estate deleted successfully');
     }
+
+    public function booking($id)
+    {
+        $user_id = auth()->user()->id;
+        
+    }
 }

@@ -14,9 +14,10 @@
             <a href="{{ route('real_estates.index', ['property_type' => $property_type])}}" class="bg-green-500 hover:bg-green-700">{{ $property_type }}</a>
           </div>
     @endforeach
+
     <div>
         <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
-          <a href="{{ route('real_estates.index')}}" class="bg-green-500 hover:bg-green-700"> 
+          <a href="{{ route('calendar_events.index') }}" class="bg-blue-500 hover:bg-blue-700">Booking</a>
         </div>
     </div>
     
@@ -34,6 +35,22 @@
                         <table class="table-auto w-full">
                             <thead>
                               <tr class="bg-primary text-center">
+                                  <th
+                                    class="
+                                    w-1/6
+                                    min-w-[160px]
+                                    text-lg
+                                    font-semibold
+                                    text-white
+                                    py-4
+                                    lg:py-7
+                                    px-3
+                                    lg:px-4
+                                    border-l border-transparent
+                                    "
+                                    >
+                                    ID
+                                  </th>
                                   <th
                                     class="
                                     w-1/6
@@ -121,16 +138,46 @@
                                     lg:py-7
                                     px-3
                                     lg:px-4
-                                    border-r border-transparent
                                     "
                                     >
-                                    Edit & Delete
+                                    Booking
                                   </th>
+                                  @if (auth()->user()->isAdmin())
+                                    <th
+                                      class="
+                                      w-1/6
+                                      min-w-[160px]
+                                      text-lg
+                                      font-semibold
+                                      text-white
+                                      py-4
+                                      lg:py-7
+                                      px-3
+                                      lg:px-4
+                                      border-r border-transparent
+                                      "
+                                      >
+                                      Edit & Delete
+                                    </th>
+                                  @endif
                               </tr>
                             </thead>
                             <tbody>
                             @foreach ($real_estates as $real_estate)
                               <tr>
+                                  <td
+                                    class="
+                                    text-center text-dark
+                                    font-medium
+                                    text-base
+                                    py-5
+                                    px-2
+                                    bg-[#F3F6FF]
+                                    border-b border-l border-[#E8E8E8]
+                                    "
+                                    >
+                                    {{ $real_estate->id }}
+                                  </td>
                                   <td
                                     class="
                                     text-center text-dark
@@ -214,32 +261,58 @@
                                     text-base
                                     py-5
                                     px-2
-                                    bg-white
-                                    border-b border-r border-[#E8E8E8]
+                                    bg-[#F3F6FF]
+                                    border-b border-[#E8E8E8]
                                     "
                                     >
                                     <a
-                                        href="{{ route('real_estates.edit', $real_estate->id) }}"
-                                        class="
-                                        border border-primary
-                                        py-2
-                                        px-6
-                                        text-primary
-                                        inline-block
-                                        rounded
-                                        hover:bg-primary hover:text-white
-                                        "
-                                        >
-                                      Edit
-                                    </a>
-                                    <form class="" action="{{ route('real_estates.destroy', $real_estate->id)}}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
+                                      href="{{ route('calendar_events.create', ['real_estate_id' => $real_estate->id]); }}"
+                                      class="text-center text-dark
+                                      font-medium
+                                      text-base
+                                      py-5
+                                      px-2
+                                      bg-white
+                                      border-b border-r border-[#E8E8E8]
+                                      "
+                                    >
+                                    Book
                                   </td>
-                              </tr>
+                                  @if (auth()->user()->isAdmin())
+                                    <td
+                                      class="
+                                      text-center text-dark
+                                      font-medium
+                                      text-base
+                                      py-5
+                                      px-2
+                                      bg-white
+                                      border-b border-r border-[#E8E8E8]
+                                      "
+                                      >
+                                      <a
+                                          href="{{ route('real_estates.edit', $real_estate->id) }}"
+                                          class="
+                                          border border-primary
+                                          py-2
+                                          px-6
+                                          text-primary
+                                          inline-block
+                                          rounded
+                                          hover:bg-primary hover:text-white
+                                          "
+                                          >
+                                        Edit
+                                      </a>
+                                      <form class="" action="{{ route('real_estates.destroy', $real_estate->id)}}" method="POST">
+                                          @csrf
+                                          @method('DELETE')
+                                          
+                                          <button type="submit" class="btn btn-danger">Delete</button>
+                                      </form>
+                                    </td>
+                                  @endif
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>
