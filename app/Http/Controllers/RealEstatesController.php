@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\RealEstate;
+use App\Models\User;
 
 class RealEstatesController extends Controller
 {
@@ -64,8 +65,20 @@ class RealEstatesController extends Controller
     {
         //
         $real_estate = RealEstate::find($id);
+        // $userData = User::select(\DB::raw("COUNT(*) as count"))
+        //             ->whereYear('created_at', date('Y'))
+        //             ->groupBy(\DB::raw("Month(created_at)"))
+        //             ->pluck('count');
+        $bookings = $real_estate->bookings()->get();
+        $userData = [-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        foreach ($bookings as $booking) {
+            $month = (int) $booking->event_start->format('m');
+            $userData[$month] += 1; 
+        }
 
-        return view('real_estates.show', compact('real_estate'));
+        // $userData = 
+
+        return view('real_estates.show', compact('real_estate', 'userData'));
     }
 
     /**

@@ -11,6 +11,8 @@ class CalendarEvent extends Model
 
     protected $guarded = [];
 
+    protected $casts = ['event_start' => 'datetime:Y-m-d', 'event_end' => 'datetime:Y-m-d'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
